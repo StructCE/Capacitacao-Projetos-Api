@@ -54,5 +54,5 @@ gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'master'
 gem 'active_model_serializers'
 
 # Testes
-gem 'rspec-core'
-gem 'factory_bot'
+gem 'rspec-rails', '~> 5.0', '>= 5.0.1'
+gem 'factory_bot_rails', '~> 6.2'

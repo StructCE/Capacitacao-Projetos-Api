@@ -14,7 +14,7 @@ RSpec.describe User, type: :model do
     end
 
     context 'name is too small' do
-       it { expect(build(:user, name: 'oi')).to_not be_valid }
+      it { expect(build(:user, name: 'oi')).to_not be_valid }
     end
 
     context 'email is nil' do

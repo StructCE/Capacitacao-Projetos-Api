@@ -9,6 +9,8 @@ class Painter < ApplicationRecord
     def valid_date
         if born.blank? || died.blank? 
             self.errors.add :born, 'Data inválida'
+        elsif died.blank? 
+            self.errors.add :died, 'Data inválida'
         elsif born.after? died
             self.errors.add :born, 'Data inválida'
         end

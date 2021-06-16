@@ -10,6 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20_210_615_170_353) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
@@ -23,6 +24,15 @@ ActiveRecord::Schema.define(version: 20_210_615_170_353) do
     t.index ['blob_id'], name: 'index_active_storage_attachments_on_blob_id'
     t.index %w[record_type record_id name blob_id], name: 'index_active_storage_attachments_uniqueness',
                                                     unique: true
+  end
+  
+  create_table "painters", force: :cascade do |t|
+    t.string "name"
+    t.text "bio"
+    t.date "born"
+    t.date "died"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table 'active_storage_blobs', force: :cascade do |t|

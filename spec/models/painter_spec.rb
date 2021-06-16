@@ -28,15 +28,15 @@ RSpec.describe Painter, type: :model do
     end
 
     context "when the painter's name has less than 3 characters" do 
-      it { expect(build(:painter, died: 'oi')).to be_invalid }
+      it { expect(build(:painter, name: 'oi')).to be_invalid }
     end
 
     context "when the painter's bio has less than 30 characters" do 
-      it { expect(build(:painter, died: '12345678912345678912345678912')).to be_invalid }
+      it { expect(build(:painter, bio: '12345678912345678912345678912')).to be_invalid }
     end
 
     context "when the painter's born date has less than 10 characters" do 
-      it { expect(build(:painter, died: '2020-01-0')).to be_invalid }
+      it { expect(build(:painter, born: '2020-01-0')).to be_invalid }
     end
 
     context "when the painter's death date has less than 10 characters" do 

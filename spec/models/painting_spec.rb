@@ -13,8 +13,12 @@ RSpec.describe Painting, type: :model do
   end
 
   describe 'validations' do
-    context '' do
+    context 'painter presence' do
+      it { expect(build(:painting, painter_id: nil, style_id: estilo.id)).to be_invalid }
+    end
 
+    context 'style presence' do
+      it { expect(build(:painting, painter_id: pintor.id, style_id: nil)).to be_invalid }
     end
   end
 end

@@ -23,7 +23,7 @@ class Api::V1::UserController < ApplicationController
   end
 
   def destroy
-    current_user.delete!
+    current_user.destroy!
     head(:ok)
   rescue StandardError => e
     render json: { message: e.message }, status: :bad_request

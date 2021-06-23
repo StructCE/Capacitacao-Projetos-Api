@@ -45,15 +45,15 @@ RSpec.describe 'Api::V1::Sessions', type: :request do
         'X-User-Token': "#{user.authentication_token}/",
         'X-User-Email': user.email
       }
-      expect(response).to have_http_status(:found) # found is a redirect status, due to authentication failure
+      expect(response).to redirect_to authentication_failure_path
     end
 
-    it 'uninitialized user ' do
+    it 'uninitialized user' do
       get '/api/v1/logout', headers: {
         'X-User-Token': user.authentication_token,
         'X-User-Email': 'bom@dia.dia'
       }
-      expect(response).to have_http_status(:found) # found is a redirect status, due to authentication failure
+      expect(response).to redirect_to authentication_failure_path
     end
   end
 end

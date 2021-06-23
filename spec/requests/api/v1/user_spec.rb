@@ -76,7 +76,7 @@ RSpec.describe 'Api::V1::Users', type: :request do
         'X-User-Token': "#{user.authentication_token}/",
         'X-User-Email': user.email
       }
-      expect(response).to have_http_status(:found) # found due to it authentication failure redirecting
+      expect(response).to redirect_to authentication_failure_path
     end
   end
 
@@ -104,7 +104,7 @@ RSpec.describe 'Api::V1::Users', type: :request do
         'X-User-Token': "#{user.authentication_token}/",
         'X-User-Email': user.email
       }
-      expect(response).to have_http_status(:found) # found due to it authentication failure redirecting
+      expect(response).to redirect_to authentication_failure_path
     end
   end
 
@@ -123,7 +123,7 @@ RSpec.describe 'Api::V1::Users', type: :request do
         'X-User-Token': "#{user.authentication_token}/",
         'X-User-Email': user.email
       }
-      expect(response).to have_http_status(:found) # found due to it authentication failure redirecting
+      expect(response).to redirect_to authentication_failure_path
     end
   end
 end

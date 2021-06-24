@@ -22,11 +22,13 @@ RSpec.describe Painting, type: :model do
     end
 
     context 'name presence' do
-      it { expect(build(:painting, painter_id:  pintor.id, style_id: estilo.id, name: nil)).to be_invalid }
+      it { expect(build(:painting, painter_id: pintor.id, style_id: estilo.id, name: nil)).to be_invalid }
     end
 
     context 'time of completion presence' do
-      it { expect(build(:painting, painter_id:  pintor.id, style_id: estilo.id, time_of_completion: nil)).to be_invalid }
+      it {
+        expect(build(:painting, painter_id: pintor.id, style_id: estilo.id, time_of_completion: nil)).to be_invalid
+      }
     end
   end
 end

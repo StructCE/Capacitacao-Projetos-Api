@@ -1,4 +1,7 @@
 class Api::V1::PaintingsController < ApplicationController
+  acts_as_token_authentication_handler_for User, only: %i[create update delete], fallback: :devise
+  before_action :is_admin, only: %i[create update delete]
+
   def index
     paintings = Painting.all
     render json: paintings, status: :ok

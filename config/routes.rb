@@ -14,7 +14,7 @@ Rails.application.routes.draw do
         get 'index', to: 'paintings#index'
         post 'create', to: 'paintings#create'
         get 'show/:id', to: 'paintings#show'
-        patch 'update/:id', to: 'paintings#update'
+        put 'update/:id', to: 'paintings#update'
         delete 'delete/:id', to: 'paintings#delete'
       end
 
@@ -22,8 +22,8 @@ Rails.application.routes.draw do
         get 'index', to: 'style#index'
         get 'show/:id', to: 'style#show'
         post 'create', to: 'style#create'
-        put 'update', to: 'style#update'
-        delete 'delete', to: 'style#destroy'
+        put 'update/:id', to: 'style#update'
+        delete 'delete/:id', to: 'style#delete'
       end
 
       get 'login', to: 'sessions#login'

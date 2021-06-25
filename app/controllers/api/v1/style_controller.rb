@@ -20,7 +20,7 @@ class Api::V1::StyleController < ApplicationController
     render json: { message: e.message }, status: :bad_request
   end
 
-  def destroy
+  def delete
     style = Style.find(params[:id])
     style.destroy!
     render head :ok
@@ -41,7 +41,7 @@ class Api::V1::StyleController < ApplicationController
 
     render json: style, status: :ok
   rescue StandardError => e
-    render json: { message: e.message }, status: :bad_request
+    render json: { message: e.message }, status: :not_found
   end
 
   private

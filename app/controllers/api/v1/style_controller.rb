@@ -1,4 +1,7 @@
 class Api::V1::StyleController < ApplicationController
+  acts_as_token_authentication_handler_for User, only: %i[create update delete], fallback: :devise
+  before_action :is_admin, only: %i[create update delete]
+
   def create
     style = Style.new(style_params)
     style.save!

@@ -18,6 +18,14 @@ Rails.application.routes.draw do
         delete 'delete/:id', to: 'paintings#delete'
       end
 
+      scope 'style' do
+        get 'index', to: 'style#index'
+        get 'show/:id', to: 'style#show'
+        post 'create', to: 'style#create'
+        put 'update', to: 'style#update'
+        delete 'delete', to: 'style#destroy'
+      end
+
       get 'login', to: 'sessions#login'
       get 'logout', to: 'sessions#logout'
     end

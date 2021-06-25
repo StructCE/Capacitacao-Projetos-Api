@@ -118,9 +118,7 @@ RSpec.describe 'Api::V1::Styles', type: :request do
           'X-User-Token': admin.authentication_token,
           'X-User-Email': admin.email
         }
-        style.reload
         expect(response).to have_http_status :ok
-        expect(style.name).to be_eql 'Futurama'
       end
 
       it 'should return bad request' do

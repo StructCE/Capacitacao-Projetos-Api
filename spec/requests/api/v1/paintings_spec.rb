@@ -76,7 +76,7 @@ RSpec.describe 'Api::V1::Paintings', type: :request do
 
     context 'without user logged in' do
       it 'should redirect to authentication failure' do
-        patch "/api/v1/paintings/update/#{pintura.id}", params: { painting: atualizado }
+        put "/api/v1/paintings/update/#{pintura.id}", params: { painting: atualizado }
         pintura.reload
         expect(response).to redirect_to authentication_failure_path
       end
@@ -84,7 +84,7 @@ RSpec.describe 'Api::V1::Paintings', type: :request do
 
     context 'with regular user logged in' do
       it 'should return unauthorized' do
-        patch "/api/v1/paintings/update/#{pintura.id}", params: { painting: atualizado }, headers: {
+        put "/api/v1/paintings/update/#{pintura.id}", params: { painting: atualizado }, headers: {
           "X-User-Token": user.authentication_token,
           "X-User-Email": user.email
         }
@@ -95,7 +95,7 @@ RSpec.describe 'Api::V1::Paintings', type: :request do
 
     context 'with admin logged in' do
       it 'should update painting info' do
-        patch "/api/v1/paintings/update/#{pintura.id}", params: { painting: atualizado }, headers: {
+        put "/api/v1/paintings/update/#{pintura.id}", params: { painting: atualizado }, headers: {
           "X-User-Token": admin.authentication_token,
           "X-User-Email": admin.email
         }
@@ -104,7 +104,7 @@ RSpec.describe 'Api::V1::Paintings', type: :request do
       end
 
       it 'should not update info' do
-        patch '/api/v1/paintings/update/2', params: { painting: atualizado }, headers: {
+        put '/api/v1/paintings/update/2', params: { painting: atualizado }, headers: {
           "X-User-Token": admin.authentication_token,
           "X-User-Email": admin.email
         }

@@ -23,7 +23,7 @@ class Api::V1::StyleController < ApplicationController
   def delete
     style = Style.find(params[:id])
     style.destroy!
-    render head :ok
+    head :ok
   rescue StandardError => e
     render json: { message: e.message }, status: :bad_request
   end

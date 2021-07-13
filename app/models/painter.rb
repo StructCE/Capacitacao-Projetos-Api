@@ -6,6 +6,7 @@ class Painter < ApplicationRecord
   validates :died, length: { is: 10 }
   validate :valid_date
   has_many :paintings
+  has_one_attached :photo
 
   def valid_date
     if born.blank? || died.blank?

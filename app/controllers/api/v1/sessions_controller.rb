@@ -1,5 +1,5 @@
 class Api::V1::SessionsController < ApplicationController
-  acts_as_token_authentication_handler_for User, only: :logout, fallback: :devise
+  acts_as_token_authentication_handler_for User, only: %i[logout], fallback: :devise
 
   def login
     user = User.find_by(email: params[:email])

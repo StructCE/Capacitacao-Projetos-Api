@@ -9,13 +9,13 @@ Rails.application.routes.draw do
         delete 'delete', to: 'user#destroy'
         get 'show', to: 'user#show'
       end
-      
-      scope 'paintings/' do 
-        get 'index', to: "paintings#index"
-        post 'create', to: "paintings#create"
-        get 'show/:id', to: "paintings#show"
-        patch 'update/:id', to: "paintings#update"
-        delete 'delete/:id', to: "paintings#delete"
+
+      scope 'paintings/' do
+        get 'index', to: 'paintings#index'
+        post 'create', to: 'paintings#create'
+        get 'show/:id', to: 'paintings#show'
+        patch 'update/:id', to: 'paintings#update'
+        delete 'delete/:id', to: 'paintings#delete'
       end
 
       get 'login', to: 'sessions#login'

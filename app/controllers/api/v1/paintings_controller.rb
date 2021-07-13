@@ -11,9 +11,9 @@ class Api::V1::PaintingsController < ApplicationController
     painting = Painting.new(painting_params)
     painting.save!
 
-    render painting, status: :created
+    render json: painting, status: :created
   rescue StandardError => e
-    render json: { message: 'Não foi possível criar uma pintura' }, status: :bad_request
+    render json: { message: e.message }, status: :bad_request
   end
 
   def show
@@ -49,7 +49,8 @@ class Api::V1::PaintingsController < ApplicationController
       'painter_id',
       'style_id',
       'name',
-      'time_of_completion'
+      'time_of_completion',
+      'description'
     )
   end
 end

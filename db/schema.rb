@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_210_622_181_018) do
+ActiveRecord::Schema.define(version: 20_210_625_153_349) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 20_210_622_181_018) do
     t.datetime 'updated_at', precision: 6, null: false
     t.string 'name'
     t.date 'time_of_completion'
+    t.text 'description'
     t.index ['painter_id'], name: 'index_paintings_on_painter_id'
     t.index ['style_id'], name: 'index_paintings_on_style_id'
   end

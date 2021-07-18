@@ -3,4 +3,5 @@ class Gallery < ApplicationRecord
   validates :user_id
   has_many :gallery_paintings, dependent: :destroy
   has_many :paintings, through: :gallery_paintings
+  has_one_attached :photo
 end

@@ -5,6 +5,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many :galleries, dependent: :destroy
   has_one_attached :photo
   validates :name, presence: true
   validates_length_of :name, minimum: 3

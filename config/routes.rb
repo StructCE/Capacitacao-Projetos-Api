@@ -8,6 +8,7 @@ Rails.application.routes.draw do
         put 'update', to: 'user#update'
         delete 'delete', to: 'user#destroy'
         get 'show', to: 'user#show'
+        post 'photo_upload', to: 'user#add_picture'
       end
 
       scope 'paintings/' do

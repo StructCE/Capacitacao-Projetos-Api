@@ -1,3 +1,11 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :name, :email, :authentication_token
+  include Rails.application.routes.url_helpers
+
+  attributes :id, :name, :email, :authentication_token, :user_photo
+
+  def user_photo
+    return nil unless object.photo.attached?
+
+    rails_blob_path(object.photo, only_path: true)
+  end
 end

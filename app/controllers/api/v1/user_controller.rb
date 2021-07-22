@@ -1,5 +1,5 @@
 class Api::V1::UserController < ApplicationController
-  acts_as_token_authentication_handler_for User, only: %i[update destroy show], fallback: :devise
+  acts_as_token_authentication_handler_for User, only: %i[update destroy show add_picture], fallback: :devise
 
   def create
     user = User.new(user_params)
@@ -31,6 +31,13 @@ class Api::V1::UserController < ApplicationController
 
   def token_fallback
     render json: { message: 'Invalid Token!' }, status: :unauthorized
+  end
+
+  def add_picture
+    current_user.photo.attach(params[:photo]) if params[:photo]
+    #  render json: current_user
+  rescue StandardError => e
+    render json: { message: e.message }, status: :bad_request
   end
 
   private

@@ -1,55 +1,64 @@
 class Api::V1::PaintersController < ApplicationController
-    acts_as_token_authentication_handler_for User, only: %i[create update delete], fallback: :devise
-    before_action :is_admin, only: %i[create update delete]
+  acts_as_token_authentication_handler_for User, only: %i[create update delete], fallback: :devise
+  before_action :is_admin, only: %i[create update delete]
 
-    def index
-        painters = Painter.all
-        render json: painters, status: :ok
-    end
+  def index
+    painters = Painter.all
+    render json: painters, status: :ok
+  end
 
-    def create
-        painter = Painter.new(painter_params)
-        painter.save!
+  def create
+    painter = Painter.new(painter_params)
+    painter.save!
 
-        render json: painter, status: :created
-    rescue StandardError => e
-        render json: {message: e.message}, status: :bad_request
-    end
+    update_picture(true)
 
-    def show
-        painter = Painter.find(params[:id])
-        render json: painter, status: :ok
-    rescue StandardError => e
-        render json: {message: 'Não foi possível encontrar o artista'}, status: :bad_request
-    end
+    render json: painter, status: :created
+  rescue StandardError => e
+    render json: { message: e.message }, status: :bad_request
+  end
 
-    def update
-        painter = Painter.find(params[:id])
-        painter.update!(painter_params)
+  def show
+    painter = Painter.find(params[:id])
+    render json: painter, status: :ok
+  rescue StandardError => e
+    render json: { message: 'Não foi possível encontrar o artista' }, status: :bad_request
+  end
 
-        render json: painter, status: :ok
-    rescue StandardError => e
-        render json: {message: 'Não foi possível atualizar o artista'}, status: :bad_request
-    end
+  def update
+    painter = Painter.find(params[:id])
+    painter.update!(painter_params)
 
-    def delete
-        painter = Painter.find(params[:id])
-        painter.destroy!
+    update_picture(true)
 
-        render painter, status: :ok
-    rescue StandardError => e
-        render json: {message: 'Não foi possível excluir o artista'}, status: :bad_request
-    end
+    render json: painter, status: :ok
+  rescue StandardError => e
+    render json: { message: 'Não foi possível atualizar o artista' }, status: :bad_request
+  end
 
-    private
+  def delete
+    painter = Painter.find(params[:id])
+    painter.destroy!
 
-    def painter_params
-        params.require(:painter).permit(
-            :name,
-            :bio,
-            :born,
-            :died
-        )
-    end
+    render painter, status: :ok
+  rescue StandardError => e
+    render json: { message: 'Não foi possível excluir o artista' }, status: :bad_request
+  end
 
+  def update_picture(called = false)
+    painter = Painter.find(params[:id])
+    painter.photo.attach(params[:picture])
+    render json: painter, status: :ok unless called
+  end
+
+  private
+
+  def painter_params
+    params.require(:painter).permit(
+      :name,
+      :bio,
+      :born,
+      :died
+    )
+  end
 end

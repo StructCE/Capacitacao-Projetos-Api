@@ -17,6 +17,7 @@ Rails.application.routes.draw do
         get 'show/:id', to: 'paintings#show'
         put 'update/:id', to: 'paintings#update'
         delete 'delete/:id', to: 'paintings#delete'
+        post 'update_picture/:id', to: 'paintings#update_picture'
       end
 
       scope 'style' do
@@ -33,6 +34,7 @@ Rails.application.routes.draw do
         get 'show/:id', to: 'painters#show'
         put 'update/:id', to: 'painters#update'
         delete 'delete/:id', to: 'painters#delete'
+        post 'update_picture/:id', to: 'painters#update_picture'
       end
 
       get 'login', to: 'sessions#login'

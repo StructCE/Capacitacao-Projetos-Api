@@ -118,4 +118,47 @@ RSpec.describe "Api::V1::Galleries", type: :request do
       end
     end
   end
+
+  describe 'DELETE /delete' do
+    context 'without user logged in' do
+      it 'should render bad request' do 
+        delete "/api/v1/gallery/delete/#{gallery.id}"
+        expect(response).to redirect_to authentication_failure_path
+      end
+    end
+
+    context 'with user logged in' do 
+      it 'should work' do 
+        delete "/api/v1/gallery/delete/#{gallery.id}", headers: authentication_headers
+        expect(response).to have_http_status :ok
+      end
+
+      it 'should return an error' do 
+        delete "/api/v1/gallery/delete/#{gallery.id + 1}", headers: authentication_headers
+        expect(response).to have_http_status :bad_request
+      end
+    end
+  end
+
+  describe 'POST /link painting' do
+    context 'without user logged in' do
+      it 'should fail' do 
+        post "/api/v1/gallery/link_painting"
+        expect(response).to redirect_to authentication_failure_path
+      end
+    end
+
+    context 'with logged user' do
+      it 'should render ok' do
+        post "/api/v1/gallery/link_painting", params: {
+          gallery: {
+            name: 'Galleria',
+            user_id: user.id,
+            painting_ids: painting.id
+          }
+        }, headers: authentication_headers
+        expect(response).to have_http_status(:ok)
+      end
+    end
+  end
 end

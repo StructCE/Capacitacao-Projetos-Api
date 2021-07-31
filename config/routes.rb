@@ -35,11 +35,11 @@ Rails.application.routes.draw do
       end
 
       scope 'gallery' do
-        post 'create', to: 'gallery#create'
-        get 'index', to: 'gallery#index'
-        get 'show/:id', to: 'gallery#show'
-        put 'update/:id', to: 'gallery#update'
-        delete 'delete', to: 'gallery#delete'
+        post 'create', to: 'gallery#create' #v
+        get 'index', to: 'gallery#index' #v
+        get 'show/:id', to: 'gallery#show' #v
+        put 'update/:id', to: 'gallery#update' #v
+        delete 'delete/:id', to: 'gallery#delete' #v
         post 'add_photo', to: 'gallery#add_photo'
         post 'link_painting', to: 'gallery#link_painting'
       end

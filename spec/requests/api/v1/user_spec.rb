@@ -86,7 +86,8 @@ RSpec.describe 'Api::V1::Users', type: :request do
         id: user.id,
         name: user.name,
         email: user.email,
-        authentication_token: user.authentication_token
+        authentication_token: user.authentication_token,
+        is_admin: user.is_admin
       }.to_json
     end
 

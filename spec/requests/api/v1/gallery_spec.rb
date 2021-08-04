@@ -150,8 +150,10 @@ RSpec.describe "Api::V1::Galleries", type: :request do
 
     context 'with logged user' do
       it 'should render ok' do
-        post "/api/v1/gallery/link_painting", params: {painting_ids: painting.id}, headers: authentication_headers
-        expect(response).to have_http_status(:ok)
+        post "/api/v1/gallery/link_painting", params: {
+          painting_id: painting.id, gallery_id: gallery.id
+        }, headers: authentication_headers
+        expect(response).to have_http_status :ok
       end
     end
   end

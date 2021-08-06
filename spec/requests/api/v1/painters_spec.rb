@@ -1,7 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Api::V1::Painters", type: :request do
-
+RSpec.describe 'Api::V1::Painters', type: :request do
   let(:admin) { create(:user, is_admin: true) }
   let(:user) { create(:user) }
 
@@ -54,7 +53,7 @@ RSpec.describe "Api::V1::Painters", type: :request do
     end
   end
 
-  context 'GET #Show' do  
+  context 'GET #Show' do
     it 'with existing painter' do
       pintor = create(:painter)
       get "/api/v1/painter/show/#{pintor.id}"
@@ -62,7 +61,7 @@ RSpec.describe "Api::V1::Painters", type: :request do
     end
 
     it 'with non existing painter' do
-      get "/api/v1/painter/show/1"
+      get '/api/v1/painter/show/1'
       expect(response).to have_http_status(:bad_request)
     end
   end
@@ -111,7 +110,6 @@ RSpec.describe "Api::V1::Painters", type: :request do
   end
 
   describe 'DELETE delete' do
-
     let(:painter) { create(:painter) }
 
     context 'without user logged in' do

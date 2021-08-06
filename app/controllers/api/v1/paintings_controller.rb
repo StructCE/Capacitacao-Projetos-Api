@@ -1,5 +1,5 @@
 class Api::V1::PaintingsController < ApplicationController
-  acts_as_token_authentication_handler_for User, only: %i[create update delete], fallback: :devise
+  acts_as_token_authentication_handler_for User, only: %i[create update delete update_picture], fallback: :devise
   before_action :is_admin, only: %i[create update delete]
 
   def index
@@ -10,6 +10,8 @@ class Api::V1::PaintingsController < ApplicationController
   def create
     painting = Painting.new(painting_params)
     painting.save!
+
+    update_picture(true)
 
     render json: painting, status: :created
   rescue StandardError => e
@@ -28,6 +30,8 @@ class Api::V1::PaintingsController < ApplicationController
     painting = Painting.find(params[:id])
     painting.update!(painting_params)
 
+    update_picture(true)
+
     render painting, status: :ok
   rescue StandardError => e
     render json: { message: 'Não foi possível editar a pintura' }, status: :bad_request
@@ -40,6 +44,12 @@ class Api::V1::PaintingsController < ApplicationController
     render painting, status: :ok
   rescue StandardError => e
     render json: { message: 'Não foi possível deletar a pintura' }, status: :bad_request
+  end
+
+  def update_picture(called = false)
+    painting = Painting.find(params[:id])
+    painting.painting.attach(params[:picture]) if params[:picture]
+    render json: painting unless called
   end
 
   private

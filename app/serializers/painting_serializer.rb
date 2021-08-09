@@ -9,6 +9,6 @@ class PaintingSerializer < ActiveModel::Serializer
   def painting_url
     return nil unless object.painting.attached?
 
-    rails_blob_url(object.painting)
+    rails_blob_url(object.painting, only_path: true)
   end
 end

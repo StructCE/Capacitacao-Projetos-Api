@@ -11,8 +11,6 @@ class Api::V1::PaintersController < ApplicationController
     painter = Painter.new(painter_params)
     painter.save!
 
-    update_picture(true)
-
     render json: painter, status: :created
   rescue StandardError => e
     render json: { message: e.message }, status: :bad_request

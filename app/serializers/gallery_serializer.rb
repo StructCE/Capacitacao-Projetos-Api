@@ -1,7 +1,7 @@
 class GallerySerializer < ActiveModel::Serializer
   include Rails.application.routes.url_helpers
 
-  attributes :id, :name, :photo_url
+  attributes :id, :name, :image_url
 
   has_many :paintings
 

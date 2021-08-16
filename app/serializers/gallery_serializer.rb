@@ -5,9 +5,9 @@ class GallerySerializer < ActiveModel::Serializer
 
   has_many :paintings
 
-  def photo_url
+  def image_url
     return nil unless object.photo.attached?
 
-    rails_blob_url(object.photo)
+    rails_blob_path(object.photo, only_path: true)
   end
 end

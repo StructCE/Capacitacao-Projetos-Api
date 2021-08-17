@@ -52,6 +52,14 @@ class Api::V1::PaintingsController < ApplicationController
     render json: painting unless called
   end
 
+  def index_style
+    paintings = Painting.where("style_id = ?", params[:id])
+
+    render paintings, status: :ok
+  rescue StandardError => e
+    render json: { message: 'Não foi possível receber as pinturas' }, status: :bad_request
+  end
+
   private
 
   def painting_params

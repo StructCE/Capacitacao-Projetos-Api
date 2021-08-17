@@ -18,6 +18,7 @@ Rails.application.routes.draw do
         put 'update/:id', to: 'paintings#update'
         delete 'delete/:id', to: 'paintings#delete'
         post 'update_picture/:id', to: 'paintings#update_picture'
+        get 'index_style/:id', to: 'paintings#index_style'
       end
 
       scope 'style' do

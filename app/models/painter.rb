@@ -5,7 +5,7 @@ class Painter < ApplicationRecord
   validates :born, length: { is: 10 }
   validates :died, length: { is: 10 }
   validate :valid_date
-  has_many :paintings
+  has_many :paintings, dependent: :destroy
   has_one_attached :photo
 
   def valid_date

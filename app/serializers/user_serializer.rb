@@ -3,6 +3,8 @@ class UserSerializer < ActiveModel::Serializer
 
   attributes :id, :name, :email, :authentication_token, :user_photo, :is_admin
 
+  has_many :galleries
+
   def user_photo
     return nil unless object.photo.attached?
 

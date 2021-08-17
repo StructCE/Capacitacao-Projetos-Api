@@ -7,8 +7,7 @@ class StyleSerializer < ActiveModel::Serializer
 
   def image_url
     return nil unless object.photo.attached?
-
-    rails_blob_url(object.photo)
+    rails_blob_url(object.photo, only_path: true)
   end
 
   def type

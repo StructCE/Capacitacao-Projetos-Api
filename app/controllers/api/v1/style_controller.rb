@@ -37,11 +37,20 @@ class Api::V1::StyleController < ApplicationController
   end
 
   def show
-    style = Style.find params[:id]
+    style = Style.find(params[:id])
 
     render json: style, status: :ok
   rescue StandardError => e
     render json: { message: e.message }, status: :not_found
+  end
+
+  def add_photo
+    style = Style.find(params[:id])
+    style.photo.attach(params[:photo])
+
+    render json: params[:photo], status: :ok
+  rescue StandardError => e
+    render json: { message: 'Não foi possível adicionar a foto' }, status: :bad_request
   end
 
   private

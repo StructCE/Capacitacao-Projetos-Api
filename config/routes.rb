@@ -26,6 +26,7 @@ Rails.application.routes.draw do
         post 'create', to: 'style#create'
         put 'update/:id', to: 'style#update'
         delete 'delete/:id', to: 'style#delete'
+        put 'add_photo/:id', to: 'style#add_photo'
       end
 
       scope 'painter' do

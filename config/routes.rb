@@ -43,7 +43,7 @@ Rails.application.routes.draw do
         get 'show/:id', to: 'gallery#show' #v
         put 'update/:id', to: 'gallery#update' #v
         delete 'delete/:id', to: 'gallery#delete' #v
-        post 'add_photo', to: 'gallery#add_photo'
+        post 'add_photo/:id', to: 'gallery#add_photo'
         post 'link_painting', to: 'gallery#link_painting'
       end
 

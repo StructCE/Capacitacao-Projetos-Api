@@ -37,7 +37,7 @@ class Api::V1::StyleController < ApplicationController
   end
 
   def show
-    style = Style.find params[:id]
+    style = Style.find(params[:id])
 
     render json: style, status: :ok
   rescue StandardError => e
